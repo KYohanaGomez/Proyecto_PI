@@ -1,13 +1,20 @@
-const { Country } = require("../db");
+const { Country, Activity } = require("../db");
 
 
 const getCountries = async (req, res)=>{
     try {
-        const countriesAll = await Country.findAll()
-        res.json(countriesAll)
+        const countriesAll = await Country.findAll({
+            include:{
+              model:Activity,
+              through:{
+                attributes:[]
+            },
+        }})
+        if(!countriesAll.length) throw Error("Error al obtener países")
+        res.status(201).json(countriesAll)
 
     } catch (error) {
-        res.json({message:'Error al obtener países:', error})
+        res.status(500).json(error.message);
         
     }
 }

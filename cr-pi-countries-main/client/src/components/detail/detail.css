@@ -1,0 +1,38 @@
+
+.container{
+    justify-content: flex-end;
+    text-align: left;
+    background-color: rgba(62, 95, 45, 0.535);
+    letter-spacing: 1px;
+    font-family: initial;
+    /* color:rgb(28, 28, 22); */
+    text-shadow: 1px 1px 1px rgb(101, 98, 98),  1px 1px 10px rgb(71, 48, 48);
+    /* float: left; */
+    padding: 0% 20% 0%;
+    height: 135mm;
+    position: relative;
+    left: 20px;
+    top: 120px;
+    border-radius: 5mm;
+} 
+.detaIMG{
+    position: relative;
+    left: -120mm;
+    top: -67mm;
+    border-radius:5mm ;
+    width: 46%;
+}
+
+.infor{
+    position: relative;
+    left: 30%;
+    font-size: 95%;
+    top: 8mm;
+}
+
+.activ{
+   position: relative;
+    right: 31%;
+    top: -48mm;
+}
+

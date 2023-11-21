@@ -1,0 +1,10 @@
+export const ADD_COUNTRY = 'ADD_COUNTRY';
+export const REMOVE_COUNTRY = 'REMOVE_COUNTRY';
+export const FILTER = 'FILTER';
+export const ORDER = 'ORDER';
+export const FILTER_CONTINENT = 'FILTER_CONTINENT';
+export const ADD_COUNTRY_NAME = 'ADD_COUNTRY_NAME';
+export const FILTER_ACTIVITY = 'FILTER_ACTIVITY';
+export const ADD_ACTIVITY = 'ADD_ACTIVITY';
+export const ORDER_ABC = 'ORDER_ABC';
+export const ORDER_POBLATION = 'ORDER_POBLATION';
