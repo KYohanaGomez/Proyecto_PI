@@ -1,15 +1,17 @@
 const { Activity } = require("../db");
 
 const postActivities = async (req, res) =>{
+
     try {
         const { name, difficulty, duration, season, countries} = req.body;
 
-        const resp = await Activity.create({name, difficulty, duration, season})
+        if(!duration|| !name || !difficulty || !season || !countries)  throw Error("Faltan datos");
+
+        const resp = await Activity.create({name, difficulty, duration, season})//creo actividades en la tabla
 
         resp.addCountries(countries)
        
-        if(!duration|| !name || !difficulty || !season) throw Error("Faltan datos");
-        res.status(201).json(resp)      
+        res.status(201).send("Actividad creada con exito!")      
         
     } catch (error) {
         res.status(500).json(error.message);

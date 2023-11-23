@@ -13,13 +13,10 @@ const CardsByName = ({onClose}) => {
     const orderPoblation = useSelector((state)=>state.orderPoblation)
   
    
-    let countrie = [...allCountries]//creo una variable y le hago una copia al estado global de todos los paises
+    //let countrie = [...allCountries]//creo una variable y le hago una copia al estado global de todos los paises
     let countriesName = [...countryByName]
     let countries = countriesName.flatMap((coun)=> coun)
-    // let orderAB = [...orderABC]
-    // let orderPoblat = [...orderPoblation]
-
-    
+  
     if(filtroConti !== 'Filter by Continent') {
       countries = [...countries]?.filter((coun)=>coun.continent === filtroConti)
     };
@@ -33,7 +30,7 @@ const CardsByName = ({onClose}) => {
     
     if(orderABC !== '') {
        orderABC === 'A' ? countries.sort((a, b) => a.name.localeCompare(b.name))
-                     : countries.sort((a, b) => b.name.localeCompare(a.name))
+                        : countries.sort((a, b) => b.name.localeCompare(a.name))
     };
 
   if(orderPoblation !== '') {
@@ -70,10 +67,9 @@ const CardsByName = ({onClose}) => {
         return pages;
       }
     
-    
   return (
     <div>
-    {countries?.map((coun)=>(
+    {cardsVisibles?.map((coun)=>(
         <Card
         key={coun.id}
         id={coun.id}

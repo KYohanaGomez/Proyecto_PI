@@ -20,7 +20,6 @@ const reducer = (state = initialState, { type, payload }) => {
              allCountries: [...payload]
            };
         case ADD_COUNTRY_NAME:
-            //console.log([...state.countryByName, payload]);
             return{
                 ...state,
                 countryByName: [...state.countryByName, payload]

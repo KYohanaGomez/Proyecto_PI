@@ -1,0 +1,10 @@
+.app{
+    background-image: url('./img/fondo4.jpg');
+    background-repeat: no-repeat;
+    background-position: center, center;
+    background-size: cover;
+    margin: -8px;
+    height:100vh;
+    overflow: hidden;
+    text-align: center;
+}

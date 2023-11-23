@@ -27,7 +27,7 @@ export const addCountryByName = (name) => {
             const { data } = await axios(URL +`?name=${name}`)
             return dispatch({type:ADD_COUNTRY_NAME, payload: data});
         } catch (error) {
-            alert(error.message) 
+            alert(error.response.data) 
         }
     }
 };
@@ -48,9 +48,8 @@ export const addActivity = () => {
         try {
             const { data } = await axios.get(URL)
             return dispatch({type: ADD_ACTIVITY, payload: data});
-            
         } catch (error) {
-            alert(error.message)  
+            window.alert(error.message)  
         }
     }
 };

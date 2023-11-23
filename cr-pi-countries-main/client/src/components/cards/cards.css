@@ -11,9 +11,11 @@
     display:inline-block;
     /* left: 10px; */
     color: black;
+    border-color: black;
     position: relative;
     top: 20mm;
     padding: 9px;
+    left: 35px;
     /* text-decoration: none; */
     
 }
@@ -23,6 +25,8 @@
     border-right: 1px solid var(--off-border-color); 
     position: relative;
     top: 20mm;
+    color: blue;
+    left: 25px;
  
 }
 .siguiente{
@@ -31,4 +35,6 @@
     border-left: 1px solid var(--off-border-color);
     position: relative;
     top: 20mm;
+    color: blue;
+    left: 50px;
 }

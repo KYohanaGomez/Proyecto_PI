@@ -5,7 +5,7 @@ const getCountriesById = async (req, res)=>{
     try {
         let { id } = req.params;
         if(!id) throw Error("Faltan datos");
-        const countries = await Country.findOne({ 
+        const countries = await Country.findOne({ //busca un pais por id y le incluye la actividad
             where: {
                  id: id 
                 },

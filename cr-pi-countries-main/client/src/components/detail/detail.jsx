@@ -17,7 +17,6 @@ const Detail = ()=> {
       .then(({data})=>{
 
         if(data)setCountry(data)
-      
     })
     return setCountry({});
   }

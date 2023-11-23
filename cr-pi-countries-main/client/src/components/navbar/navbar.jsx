@@ -13,8 +13,11 @@ const Navbar = ({countries, countriesByName, activities}) => {
  useEffect(()=>countries(),[]);//ejecuta el codigo interno cuando se levanta el componente
 
  const [name, setName]=useState('');//estado local
+ const [aux, setAux]=useState('');//estado local
+
  const allCountries = useSelector((state)=>state.allCountries);//estado global de toodos los paises
  const allActivities = useSelector((state)=>state.allActivities);
+ const countryByName = useSelector((state)=>state.countryByName)
  const [selectFilter, setSelectFilter]= useState();
  const [selectFilterAct, setSelectActivity] = useState();
  const [selectOrderABC, setSelectOrderABC] = useState();
@@ -35,28 +38,44 @@ const Navbar = ({countries, countriesByName, activities}) => {
   };
 
  const handlerFilterContin = (event) => {
+   setSelectActivity('Filter by activity')
+   dispatch(filterActivity('Filter by activity'))
    dispatch(filterConti(event.target.value))//manda una accion 
    setSelectFilter(event.target.value)
   };
 
  const handleFilterActiv = (event) =>{
+   setSelectFilter('Filter by Continent')
+   dispatch(filterConti('Filter by Continent'))
    dispatch(filterActivity(event.target.value))
   };
 
  const handleChange = (event) =>{
-   setName(event.target.value)
+    setAux(event.target.value)
+    setName(event.target.value)
   };
 
  const handleOrderABC = (event) => {
-   dispatch(orderABC(event.target.value))
+  setSelectOrderPoblation('')
+  dispatch(orderPoblation(''))
+  dispatch(orderABC(event.target.value))
   };
 
  const handleOrderPoblation = (event) => {
+   setSelectOrderABC('')
+   dispatch(orderABC(''))
    dispatch(orderPoblation(event.target.value))
   };
 
  const searchCountryName = (name) =>{
-   countriesByName(name)
+  let countries = countryByName?.flatMap((coun)=> coun)
+  let mapeo = countries?.map((count)=> count.name?.toUpperCase())
+  let auxMayus = aux.toUpperCase()
+  if (!mapeo.includes(auxMayus)) {
+    setAux('');
+    setName('');
+    return countriesByName(name);
+  } else window.alert("Ya existe este país en la lista");
   };
 
  const seteo = () =>{
@@ -81,7 +100,7 @@ const Navbar = ({countries, countriesByName, activities}) => {
         <button className='create' >Create Activity</button>
         </NavLink>
 
-        <input className='input' type='search' onChange={handleChange}/>
+        <input className='input' type='search' onChange={handleChange} value={aux}/>
         <NavLink to='/home/name'>
         <button className='Search' onClick={()=>searchCountryName(name)} >Search Countries</button>
         </NavLink>

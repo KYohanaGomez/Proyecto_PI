@@ -6,7 +6,7 @@ const getCountriesByName = async (req, res)=>{
     try {
        let { name } = req.query;
         if(!name) throw Error('Faltan datos');
-        const resp = await Country.findAll({ 
+        const resp = await Country.findAll({ //busca toods los paises que coicidan con el nombre y le agrega la actividad
             where: {
                 name: {
                     [Op.iLike]:name

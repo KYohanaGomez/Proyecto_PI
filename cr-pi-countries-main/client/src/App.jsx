@@ -7,8 +7,6 @@ import { addCountry, addCountryByName, removeCountry , addActivity} from './redu
 import axios from 'axios';
 
 
-
-
 function App() {
    const location = useLocation()
    const dispatch = useDispatch()
@@ -34,14 +32,15 @@ function App() {
    const postActivity = async({name, difficulty, duration, season, countries}) =>{
      try {
        const info = {name, difficulty, duration, season, countries}
-       let {data} = await axios.post('http://localhost:3001/activities',info)
+        let {data} = await axios.post('http://localhost:3001/activities',info)
+       window.alert(data);
        }  catch (error) {
-         alert(error.message)
+      window.alert(error.response.data)
       }
     }
 
   return (
-      <div>
+      <div className='app'>
        {location.pathname !== '/' && <Navbar countries={countries} 
        countriesByName={countriesByName} activities={activities}/>} 
        

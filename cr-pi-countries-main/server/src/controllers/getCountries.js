@@ -3,7 +3,7 @@ const { Country, Activity } = require("../db");
 
 const getCountries = async (req, res)=>{
     try {
-        const countriesAll = await Country.findAll({
+        const countriesAll = await Country.findAll({//busca todos los paises con las actividades relacionadas
             include:{
               model:Activity,
               through:{

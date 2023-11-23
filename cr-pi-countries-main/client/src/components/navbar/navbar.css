@@ -1,9 +1,5 @@
-image url{
-   font-family: letra;
-   src: url('../../img/fondo3.jpg');
-}
-
 .Home{
+   
    border-radius: 10mm;
    border-color: rgb(247, 247, 247);
    border-style: dashed;

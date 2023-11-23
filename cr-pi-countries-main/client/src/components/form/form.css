@@ -3,10 +3,12 @@
 	padding:46px;
 	border-radius:10px;
 	margin:auto;
-	background-color:#ccc;
+	background-color: rgb(243, 145, 75);
     position: relative;
-   font-size:20px;
-  
+    font-size:15px;
+    text-align: left;
+    top: 3mm;
+    border: 5px solid;
 }
 .home{
     color:black;
@@ -20,6 +22,16 @@
     top: -50px;
 
 }
+
+.titulo{
+ font-family: serif;
+ position: relative;
+ top: -15mm ;
+ text-transform: uppercase;
+ margin-bottom: -7mm;
+ text-align: center;
+}
+
 .boton{
     color: black;
     background-color: bisque;
@@ -27,8 +39,32 @@
     cursor: pointer;
     width: 14%;
     font-size: 20px;
-    top: 15px;
+    top:30px;
     position: relative;
-    right: -630px;
+    right: -640px;
 
+}
+.butonDele{
+    border: none;
+    border-radius: 3mm;
+    background-color: burlywood;
+
+}
+
+.nameOk{
+    color: rgb(0, 255, 0);
+}
+.nameError{
+    color: rgb(255, 0, 0);
+}
+
+.div{
+    position: relative;
+    margin-top: 5mm;
+    margin-bottom: 5mm;
+}
+
+.label{
+   font-weight: 600;
+   font-family: cursive;
 }
