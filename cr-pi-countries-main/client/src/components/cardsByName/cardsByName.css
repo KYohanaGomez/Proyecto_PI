@@ -1,0 +1,59 @@
+.cardsByName{
+    position: relative;
+    display: inline;
+    text-align: center; 
+    flex-wrap: wrap;
+    gap: 0px;
+}
+.buttonPage{
+    background-color: var(--light-bgcolor);
+    display:inline-block;
+    /* left: 10px; */
+    color: black;
+    border-color: black;
+    position: relative;
+    top: 20mm;
+    padding: 9px;
+    left: 35px;
+    /* text-decoration: none; */
+    
+}
+.anterior{
+    padding: 8px;
+    cursor: pointer;
+    border-right: 1px solid var(--off-border-color); 
+    position: relative;
+    top: 20mm;
+    color: blue;
+    left: 25px;
+ 
+}
+.siguiente{
+    padding: 8px;
+    cursor: pointer;
+    border-left: 1px solid var(--off-border-color);
+    position: relative;
+    top: 20mm;
+    color: blue;
+    left: 50px;
+}
+.start{
+    padding: 5px;
+    cursor: pointer;
+    border-right: 1px solid var(--off-border-color); 
+    position: relative;
+    top: 80px;
+    color: blue;
+    left: 60px;  
+    height: 34px;
+}
+.end{
+    padding: 5px;
+    cursor: pointer;
+    border-left: 1px solid var(--off-border-color);
+    position: relative;
+    top: 20mm;
+    color: blue;
+    left: 20px;
+    height: 30px;
+}

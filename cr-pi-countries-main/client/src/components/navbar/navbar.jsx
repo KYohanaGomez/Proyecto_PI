@@ -32,6 +32,7 @@ const Navbar = ({countries, countriesByName, activities}) => {
   };
 
  const selectActivity = () => {
+  //activities()
    let casoBase = ['Filter by activity']
    let map = allActivities?.map((activ)=>activ.name)
    return casoBase.concat(map)
@@ -45,9 +46,11 @@ const Navbar = ({countries, countriesByName, activities}) => {
   };
 
  const handleFilterActiv = (event) =>{
+   //activities()
    setSelectFilter('Filter by Continent')
    dispatch(filterConti('Filter by Continent'))
    dispatch(filterActivity(event.target.value))
+   setSelectActivity(event.target.value)
   };
 
  const handleChange = (event) =>{
@@ -59,12 +62,14 @@ const Navbar = ({countries, countriesByName, activities}) => {
   setSelectOrderPoblation('')
   dispatch(orderPoblation(''))
   dispatch(orderABC(event.target.value))
+  setSelectOrderABC(event.target.value)
   };
 
  const handleOrderPoblation = (event) => {
    setSelectOrderABC('')
    dispatch(orderABC(''))
    dispatch(orderPoblation(event.target.value))
+   setSelectOrderPoblation(event.target.value)
   };
 
  const searchCountryName = (name) =>{

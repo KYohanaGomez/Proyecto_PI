@@ -47,9 +47,9 @@ function App() {
         <Routes>    
           <Route exact path='/' element={<LandingPage/>}/>
           <Route path="/detail/:id" element={<Detail />}/>
-          <Route path='/home' element={<Cards/>}/>
+          <Route path='/home' element={<Cards />}/>
           <Route path='/home/name' element={<CardsByName onClose={onClose} />}/>
-          <Route path='/form' element={<Form postActivity={postActivity}/>}/>
+          <Route path='/form' element={<Form countries={countries} activities={activities} postActivity={postActivity}/>}/>
       </Routes>
       </div>
   )

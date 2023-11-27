@@ -1,9 +1,11 @@
 import Card from '../card/card';
 import { useSelector } from 'react-redux';
 import './cards.css'
-import { useState } from 'react';
+import { useState} from 'react';
 
 const Cards = () => {
+
+  //useEffect(() ),[]
 
   const allCountries = useSelector((state)=>state.allCountries);
   const filtroConti = useSelector((state)=>state.filtroConti);
@@ -31,7 +33,7 @@ const Cards = () => {
 
     if(orderPoblation !=='') {
        orderPoblation ==='Asc'? countries.sort((a, b)=>a.population-b.population)
-                              : countries.sort((a, b)=>b.population-a.population) 
+                              : countries.sort((a, b)=>b.population-a.population)
     };
 
     const [actualPage, setActualPage] = useState(1);//estado local
@@ -54,16 +56,28 @@ const Cards = () => {
       for (let i = 1; i <= maxOfPages; i++) {
         pages.push(
             <div className='buttonPage' key={i}>
-                <button  
+                <button
                  onClick={()=>setActualPage(i)}
                  className={i === actualPage?"page":"pages"}>
                     {i}
                 </button>
-            </div> 
+            </div>
         )}
+        
       return pages;
     }
-    
+
+    const hadleInic =(event)=>{
+      setActualPage(1)
+     }
+
+     const hadleEnd =(event)=>{
+      setActualPage(25)
+     }
+
+     
+     
+
     return (
         <div className='cards'>
           {cardsVisibles?.map((coun)=>(
@@ -80,6 +94,7 @@ const Cards = () => {
           />
           ))}
           <div>
+          <button className='end' onClick={()=>hadleEnd()}>end</button>
             <button className='anterior' onClick={()=>handlePreviousPage()} disabled={actualPage === 1}>
                 ◀
             </button>
@@ -88,8 +103,8 @@ const Cards = () => {
                 ▶
             </button>
           </div>
-        </div> 
-           
-    ) ; 
-} 
+            <button className='start' onClick={()=>hadleInic()}>start</button>
+        </div>
+    ) ;
+}
   export default Cards;

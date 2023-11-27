@@ -68,7 +68,7 @@ const CardsByName = ({onClose}) => {
       }
     
   return (
-    <div>
+    <div className='cardsByName'>
     {cardsVisibles?.map((coun)=>(
         <Card
         key={coun.id}
@@ -84,7 +84,8 @@ const CardsByName = ({onClose}) => {
      />
 
     ))}
-    <div>
+    <div>  
+          <button className='end' onClick={()=>hadleEnd()}>end</button>
           <button className='anterior' onClick={()=>handlePreviousPage()} disabled={actualPage === 1}>
                 ◀
             </button>
@@ -92,6 +93,7 @@ const CardsByName = ({onClose}) => {
             <button className='siguiente' onClick={()=>handleNextPage()} disabled={actualPage * byPage >= allCountries?.length}>
                 ▶
             </button>
+             <button className='start' onClick={()=>hadleInic()}>start</button>
           </div>
      </div>
  )
