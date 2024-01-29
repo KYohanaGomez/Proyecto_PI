@@ -1,6 +1,8 @@
 const { Op } = require("sequelize");
 const { Activity } = require("../db");
 
+//esta función maneja la creación de actividades en la aplicación, realiza validaciones, verifica si ya 
+//existe una actividad con el mismo nombre, crea la actividad en la base de datos y responde adecuadamente según el resultado del proceso.
 const postActivities = async (req, res) =>{
 
     const { name, difficulty, duration, season, countries} = req.body;

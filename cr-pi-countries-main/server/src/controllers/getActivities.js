@@ -1,6 +1,7 @@
 const { Activity, Country } = require("../db");
 
-
+//esta función maneja la solicitud para obtener todas las actividades de la base de datos, realiza la 
+//consulta utilizando Sequelize, verifica si se obtuvieron actividades y responde adecuadamente según el resultado del proceso.
 const getActivities = async (req, res)=>{
     try {
         const activitiesAll = await Activity.findAll(

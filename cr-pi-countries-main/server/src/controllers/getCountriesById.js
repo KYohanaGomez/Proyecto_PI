@@ -1,6 +1,8 @@
 const { Country, Activity } = require("../db");
 
 
+//esta función maneja la solicitud para obtener un país específico por su ID desde la base de datos, incluyendo 
+//las actividades relacionadas, realiza la consulta utilizando Sequelize, verifica si se encontró el país y responde adecuadamente según el resultado del proceso.
 const getCountriesById = async (req, res)=>{
     try {
         let { id } = req.params;

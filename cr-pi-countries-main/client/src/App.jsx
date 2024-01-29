@@ -32,7 +32,7 @@ function App() {
    const postActivity = async({name, difficulty, duration, season, countries}) =>{
      try {
        const info = {name, difficulty, duration, season, countries}
-        let {data} = await axios.post('http://localhost:3001/activities',info)
+        let {data} = await axios.post('http://localhost:3001/activities', info)
        window.alert(data);
        }  catch (error) {
       window.alert(error.response.data)

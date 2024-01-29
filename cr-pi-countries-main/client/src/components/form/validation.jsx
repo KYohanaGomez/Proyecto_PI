@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-const validation = (newActivity) =>{
+const validation = (newActivity) =>{//validaciones en tiempo real
   
     let newErrors = {};
     const regex = /^[^\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]+$/;
-    const regex1 = /^(?!.*([a-zA-Z])\1)[a-zA-Z\s]+$/;
+    //const regex1 = /^(?!.*([a-zA-Z])\1)[a-zA-Z\s]+$/;
+    const regex1 = /^(?:(?!(.)\1\1)[a-zA-Z\s])+$/;
     const regex2 = /^[A-Z][a-zA-Z\s]*$/;
     const regex3 = /^[^a-zA-Z]+$/;
     const regex4 = /\b(\w+)\b(?=.*\b\1\b)/gi;
@@ -37,12 +38,10 @@ const validation = (newActivity) =>{
     if(!newActivity.season) newErrors.season = 'Se requiere una temporada'
     else newErrors.season ='✔';
 
-    
     // if (newActivity.countries.length === 0) newErrors.countries = 'Se requieren paises';
     //  else newErrors.countries = '✔';
 
     return newErrors;
-
 }
 
 export default validation;

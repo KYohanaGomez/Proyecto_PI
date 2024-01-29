@@ -98,6 +98,9 @@ const Navbar = ({countries, countriesByName, activities}) => {
   return (
 
     <div className={location.pathname === '/form' ? display:''}>
+        <NavLink to='/home/name'>
+        <button onClick={()=>send()} className='home1'>Countries by names</button>
+        </NavLink>
         <NavLink to='/home'>
         <button className='Home' onClick={()=>seteo()}>Home</button>
         </NavLink>

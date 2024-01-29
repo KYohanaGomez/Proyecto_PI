@@ -1,6 +1,8 @@
 const axios = require("axios");
 const URL = 'http://localhost:5000/countries';
 
+//esta función maneja la descarga de información de países desde una API externa, realiza el mapeo y 
+//transformación de los datos, y responde con la información de los países o con mensajes de error según sea necesario.
 const countriesApi = async (req, res) =>{
     try {
         const { data }= await axios.get(URL)

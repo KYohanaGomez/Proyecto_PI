@@ -2,6 +2,8 @@ const { Country, Activity } = require("../db");
 const { Op } = require("sequelize");
 
 
+//esta función maneja la solicitud para obtener todos los países de la base de datos que coincidan con un nombre 
+//proporcionado, incluyendo las actividades relacionadas, realiza la consulta utilizando Sequelize, verifica si se encontraron países y responde adecuadamente según el resultado del proceso.
 const getCountriesByName = async (req, res)=>{
     try {
        let { name } = req.query;

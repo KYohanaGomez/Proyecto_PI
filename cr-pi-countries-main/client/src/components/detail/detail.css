@@ -20,19 +20,19 @@
     left: -120mm;
     top: -67mm;
     border-radius:5mm ;
-    width: 46%;
+    width: 39%;
 }
 
 .infor{
     position: relative;
     left: 30%;
-    font-size: 95%;
-    top: 8mm;
+    font-size: 92%;
+    top: 5mm;
 }
 
 .activ{
    position: relative;
     right: 31%;
-    top: -48mm;
+    top: -56mm;
 }
 

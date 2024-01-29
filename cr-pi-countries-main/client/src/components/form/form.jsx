@@ -6,10 +6,10 @@ import './form.css'
 
 const Form = ({postActivity, countries, activities}) => {
 
-  const [countriesState, setCountriesState] = useState([])
-  const [count, setCount] = useState()
-  const [seas, setSeas] = useState()
-  const [newActivity, setNewActivity] = useState({//creo un estado de actividades
+  const [countriesState, setCountriesState] = useState([])//declaro el estado countriesState y la función para actualizarlo setCountriesState.
+  const [count, setCount] = useState()//declara el estado count y la función para actualizarlo setCount utilizando el hook useState.
+  const [seas, setSeas] = useState()//declaro el estado seas y la función para actualizarlo setSeas.
+  const [newActivity, setNewActivity] = useState({//creo un estado de actividades y la funcion para actualizarlo
     name : '',
     difficulty: '',
     duration: '',
@@ -17,47 +17,31 @@ const Form = ({postActivity, countries, activities}) => {
     countries: [],
 
   })
-  const [errors, setErrors] = useState({//creo un estado de errores
+  const [errors, setErrors] = useState({//creo un estado de errores y la funcion para actualizarlo
     name : '',
     difficulty: '',
     duration: '',
     season: '',
     countries: '',
   })
-  const handleChange = (event) =>{
+  const handleChange = (event) =>{//se utiliza para manejar los campos de entrada de formulario,actualiza el stado
      const property = event.target.name;//asi se que propiedad estoy modificando
      const value = event.target.value;//Se obtiene el nuevo valor de la propiedad desde el evento.
      setNewActivity({...newActivity, [property]: value})//Se actualiza el estado mediante la creación de un nuevo objeto y se copia todas las propied y se actualiza el nuevo value
      setErrors(validation({...newActivity, [property]:value}))//Se llama a la función validation para obtener los errores actualizados basados en el nuevo estado
   }
-  // const handleChangeCountries = (event) => {
-  //   const { value } = event.target;
-  
-  //   if (!countriesState.includes(value)) {
-  //     setCountriesState([...countriesState, value]);
-  
-  //     // Creo una nueva copia del array countries usando el spread operator
-  //     const newCountries = [...newActivity.countries, value];
-  
-  //     // Actualizo el estado newActivity con el nuevo array de countries
-  //     setNewActivity({ ...newActivity, countries: newCountries });
-  
-  //     // Actualizo los errores basándome en el nuevo estado de newActivity
-  //     setErrors(validation({ ...newActivity, countries: newCountries }));
-  //   }
-  // };
-  
-  const handleChangeSeason = (event) => {
-     const { value } = event.target
-     const { name } = event.target
+  console.log(countriesState);
+  const handleChangeSeason = (event) => {//maneja cambios específicos para las selecciones de temporada 
+    const { value } = event.target 
+    const { name } = event.target
      setSeas(value)
      setNewActivity({...newActivity, [name]: value})
      setErrors(validation({...newActivity, [name]:value}))
   }
 
-  const handleChangeCountries = (event)=>{
+  const handleChangeCountries = (event)=>{//maneja cambios específicos para las selecciones de paises 
      const { value } = event.target
-     setCount(value)
+     setCount( value )
     if (!countriesState.includes(value)) {
       setCountriesState([...countriesState, value])
       const pusheo = newActivity.countries.push(value)
@@ -65,81 +49,87 @@ const Form = ({postActivity, countries, activities}) => {
       setErrors(validation({...newActivity, pusheo}))
     }
   }
+  // if (newActivity.countries.length === 0) {
+  //   setCount('')
+  // }
 
+  if (errors.name) {
+    if (newActivity.countries.length === 0){
+      errors.countries = 'Se requieren paises';    
+    } 
+    else errors.countries = '✔'; 
+  }
 
-const send = ()=>{
-  activities()
-  countries();
-}
+ const send = ()=>{//se llama en el botón "Home" y ejecuta las funciones activities y countries.
+   activities()
+   countries();
+  }
+  //esta función se utiliza para manejar el evento de envío del formulario,previene que se recarga de página 
+ // y realiza una operación asincrónica, y maneja cualquier error que pueda ocurrir durante este proceso mostrando una alerta al usuario.
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      await postActivity(newActivity);
+      
+    } catch (error) {
+      window.alert('Error al enviar la actividad:', error);
+    }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+    const { name, difficulty, duration, season, countries } = newActivity
+
+    if (name !== "" && difficulty !== "" && duration !== "" && season !== "" && countries.length !== 0) {
+      setCount('');
+      setSeas('');
+      setNewActivity({ name: '', difficulty: '', duration: '', season: '', countries: [] });
+      setErrors({ name: '', difficulty: '', duration: '', season: '', countries: '' });
+      setCountriesState([]);
+    }
+     
+  };
+  //esta funcion se asegura de que ciertos campos del formulario tengan datos válidos antes de permitir que 
+ //el formulario se envíe, mostrando alertas en caso de que falten datos o haya errores.
+  const antesDelSubmit = (event) => {
     if (
       errors.name !== 'Se requiere el nombre' &&
       errors.name !== '✔' &&
       errors.name !== ''
     ) {
-      event.preventDefault(); 
       window.alert('Datos erroneos en nombre');
     } else if (
       errors.difficulty !== 'Se requiere un nivel de dificultad' &&
       errors.difficulty !== '✔' &&
       errors.difficulty !== ''
     ) {
-      event.preventDefault(); 
       window.alert('Datos erroneos en dificultad');
     } else if (
       errors.duration !== 'Se requiere un tiempo de duracion' &&
       errors.duration !== '✔' &&
       errors.duration !== ''
     ) {
-      event.preventDefault(); 
       window.alert('Datos erroneos en duracion');
     } else if (
-      errors.season !== 'Se requiere una temporada' &&
-      errors.season !== '✔' &&
-      errors.season !== ''
-    ) {
-      event.preventDefault(); 
-      window.alert('Datos erroneos en temporada');
+      // errors.season !== 'Se requiere una temporada' &&
+      // errors.season !== '✔' &&
+      // errors.season !== ''
+      errors.season === 'Se requiere una temporada'
+    ) { 
+      window.alert('Te falta seleccionar una temporada');
     } else if (
-      errors.countries !== 'Se requieren paises' &&
-      errors.countries !== '✔' &&
-      errors.countries !== ''
-    ) {
-      event.preventDefault(); 
-      window.alert('Datos erroneos en paises');
-    } else { 
-      event.preventDefault(); 
-      postActivity(newActivity);
-      setCount('')
-      setSeas('')
-      setNewActivity({ name: '', difficulty: '', duration: '', season: '', countries: [] });
-      setErrors({ name: '', difficulty: '', duration: '', season: '', countries: '' });
-      setCountriesState([]);
-    }
-    
-  };
+      // errors.countries !== 'Se requieren paises' &&
+      // errors.countries !== '✔' &&
+      // errors.countries !== ''
+      errors.countries === 'Se requieren paises'
+          ) {
+      window.alert('Te falta seleccionar al menos un pais');
+    } 
+    else handleSubmit(event)
+  }
 
-  const allCountries = useSelector((state)=>state.allCountries)
-  const mapeo = allCountries?.map(({id, name}) => ({id, name}))
-  const list = mapeo.sort((a,b)=>a.name.localeCompare(b.name))
-
+  const allCountries = useSelector((state)=>state.allCountries)//guardo el estado global de paises en esta variable
+  const mapeo = allCountries?.map(({id, name}) => ({id, name}))//aplico la función `map` para crear un nuevo array (`mapeo`) donde cada elemento tiene solo las propiedades `id` y `name` de los objetos originales de `allCountries`.
+  const list = mapeo.sort((a,b)=>a.name.localeCompare(b.name))// Ordeno el array `mapeo` alfabéticamente según el nombre de los países. Se utiliza el método `localeCompare` para realizar una comparación sensible a la localización y asegurar un ordenamiento adecuado.
   const seasons = ['Verano', 'Otoño', 'Invierno', 'Primavera']  
 
-
-
-  if (errors.name) {
-    if (newActivity.countries.length === 0){
-      errors.countries = 'Se requieren paises';
-      
-    } 
-  else errors.countries = '✔';
-
- 
-  
-  }
-  
   return (
     <form  className='form' onSubmit={handleSubmit}>
        <NavLink to='/home'>
@@ -173,10 +163,10 @@ const send = ()=>{
          <label className='label'>Season: </label>
          <select onChange={handleChangeSeason} name='season' value={seas}>
          <option value=''>seleccione</option>
-          {seasons.map((seas)=>(
-            <option key={seas} value={seas}>
-             {seas}
-         </option>
+          {seasons.map((sea)=>(
+            <option key={sea} value={sea}>
+             {sea}
+            </option>
           ))}
          </select>
          <label>{errors.season? <label className={errors.season === "✔" ? "nameOk" : "nameError"}> {errors.season}</label>:<p></p>}</label>
@@ -203,9 +193,8 @@ const send = ()=>{
              ))}
           </div>
        </div>
-        <button className='boton' type="submit">Submit</button>
+        <button className='boton' type="button" value="submit" onClick={()=>antesDelSubmit(event)}>Submit</button>
     </form>
   )
 }
-
 export default Form;
